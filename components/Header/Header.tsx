@@ -5,8 +5,8 @@ import { FaShoppingCart } from "react-icons/fa";
 const Header: React.FC = () => {
   const nav = [
     { name: "Home", href: "/" },
-    { name: "Produtos", href: "/plp?type=produtos" },
-    { name: "Serviços", href: "/plp?type=servicos" },
+    { name: "Produtos", href: "/plp?type=products" },
+    { name: "Serviços", href: "/plp?type=services" },
     { name: "Cadastro", href: "/cadastro" },
   ];
 

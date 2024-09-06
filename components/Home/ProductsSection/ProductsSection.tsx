@@ -1,4 +1,5 @@
 import CTA from "@/components/CTA/CTA";
+import { Separator } from "@/components/ui/separator";
 import WrapperWithTitle from "@/components/WrapperWithTitle/WrapperWithTitle";
 
 const ProductsSection: React.FC = () => {
@@ -19,6 +20,7 @@ const ProductsSection: React.FC = () => {
             <p className="text-lg text-gray-600 text-center">
               Conheça nossos produtos e veja como eles podem ajudar você.
             </p>
+            <Separator className="w-[60%] bg-gray-200" />
             <CTA buttonText="Conheça" />
           </div>
         </div>
@@ -33,6 +35,7 @@ const ProductsSection: React.FC = () => {
             <p className="text-lg text-gray-600 text-center">
               Conheça nossos serviços e veja como eles podem ajudar você.
             </p>
+            <Separator className="w-[60%] bg-gray-200" />
             <CTA buttonText="Conheça" />
           </div>
         </div>
