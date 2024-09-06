@@ -21,9 +21,9 @@ const Header: React.FC = () => {
             {name}
           </Link>
         ))}
-        <Link href="/cart" className="text-lg text-gray-300 hover:text-white hover:underline">
+        <p className="text-lg text-gray-300 hover:text-white cursor-pointer">
           <FaShoppingCart />
-        </Link>
+        </p>
       </nav>
     </header>
   );

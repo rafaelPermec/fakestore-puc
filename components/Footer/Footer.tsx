@@ -12,9 +12,9 @@ const Footer: React.FC = () => {
   ];
 
   const social = [
-    { name: "Instagram", href: "www.instagram.com", icon: FaInstagram },
-    { name: "GitHub", href: "www.github.com", icon: FaGithub },
-    { name: "LinkedIn", href: "www.linkedin.com", icon: FaLinkedin },
+    { name: "Instagram", href: "https://www.instagram.com", icon: FaInstagram },
+    { name: "GitHub", href: "https://www.github.com", icon: FaGithub },
+    { name: "LinkedIn", href: "https://www.linkedin.com", icon: FaLinkedin },
   ];
 
   return (
@@ -22,19 +22,32 @@ const Footer: React.FC = () => {
       <SVGLogo />
       <div className="flex gap-8">
         {social.map(({ name, href, icon }) => (
-          <Link key={name} href={href} className="text-lg text-gray-300 hover:text-white">
+          <a
+            key={name}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            referrerPolicy="no-referrer"
+            className="text-lg text-gray-300 hover:text-white"
+          >
             {React.createElement(icon)}
-          </Link>
+          </a>
         ))}
       </div>
       <nav className="flex flex-col items-center gap-4 justify-center">
         {nav.map(({ name, href }) => (
-          <Link key={name} href={href} className="text-sm text-gray-300 hover:text-white hover:underline">
+          <Link
+            key={name}
+            href={href}
+            className="text-sm text-gray-300 hover:text-white hover:underline"
+          >
             {name}
           </Link>
         ))}
       </nav>
-      <p className="text-sm text-gray-200">© 2024 Rafael Perdigão Melo Castro - PUCRS</p>
+      <p className="text-sm text-gray-200">
+        © 2024 Rafael Perdigão Melo Castro - PUCRS
+      </p>
     </footer>
   );
 };
