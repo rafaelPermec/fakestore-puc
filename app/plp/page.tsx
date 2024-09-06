@@ -1,5 +1,6 @@
 "use client";
 import WrapperWithTitle from "@/components/WrapperWithTitle/WrapperWithTitle";
+import Counter from "@/components/Counter/Counter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,25 +13,55 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
-import Counter from "@/components/Counter/Counter";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function PLP() {
-  const searchParams = useSearchParams().get("type");
+  const [type, setType] = useState<"products" | "services">("products");
+  const searchParams = useSearchParams();
+  const param = searchParams.get("type");
+
+  useEffect(() => {
+    if (param === "products") {
+      setType("products");
+    }
+    if (param === "services") {
+      setType("services");
+    } else {
+      setType("products");
+    }
+  }, [param]);
 
   return (
-    <div className="items-center justify-items-center min-h-[40dvw] p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-white">
+    <div className="items-center justify-items-center min-h-[40dvw] p-8 pb-20 gap-16 sm:p-20 bg-white">
       <WrapperWithTitle title="Conheça nossos produtos e serviços">
         <Tabs
-          defaultValue={searchParams === "services" ? "services" : "products"}
+          defaultValue={param === "services" ? "services" : "products"}
+          value={type}
+          onChange={(value) => {
+            setType(value as unknown as "products" | "services");
+          }}
           className="w-full flex flex-col items-center justify-center gap-2"
         >
           <TabsList className="grid grid-cols-2 w-[200px] gap-2">
-            <TabsTrigger value="products">Produtos</TabsTrigger>
-            <TabsTrigger value="services">Serviços</TabsTrigger>
+            <TabsTrigger
+              value="products"
+              onClick={() => {
+                setType("products");
+              }}
+            >
+              Produtos
+            </TabsTrigger>
+            <TabsTrigger
+              value="services"
+              onClick={() => {
+                setType("services");
+              }}
+            >
+              Serviços
+            </TabsTrigger>
           </TabsList>
           <TabsContent
             value="products"
