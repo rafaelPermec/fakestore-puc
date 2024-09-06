@@ -1,8 +1,10 @@
 "use client";
+import { useEffect, useState } from "react";
 import WrapperWithTitle from "@/components/WrapperWithTitle/WrapperWithTitle";
 import Counter from "@/components/Counter/Counter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
   Card,
   CardContent,
@@ -11,12 +13,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export default function PLP() {
   const [type, setType] = useState<"products" | "services">("products");
