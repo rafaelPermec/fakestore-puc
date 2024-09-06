@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             referrerPolicy="no-referrer"
-            className="text-lg text-gray-300 hover:text-white"
+            className="text-lg text-gray-300 hover:text-white hover:scale-110 transform transition-transform"
           >
             {React.createElement(icon)}
           </a>
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
           <Link
             key={name}
             href={href}
-            className="text-sm text-gray-300 hover:text-white hover:underline"
+            className="text-sm text-gray-300 hover:text-white hover:scale-110 transform transition-transform"
           >
             {name}
           </Link>

@@ -11,17 +11,21 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="flex items-center justify-between px-12 w-full h-24 border-b bg-gray-900">
+    <header className="flex items-center justify-between px-12 w-full h-24 border-b bg-gray-900 max-[700px]:justify-center max-[700px]:px-4">
       <div>
         <SVGLogo />
       </div>
-      <nav className="flex items-center gap-12 justify-center">
+      <nav className="flex items-center gap-12 justify-center max-[700px]:hidden">
         {nav.map(({ name, href }) => (
-          <Link key={name} href={href} className="text-sm text-gray-300 hover:text-white hover:underline">
+          <Link
+            key={name}
+            href={href}
+            className="text-sm text-gray-300 hover:text-white hover:scale-110 transform transition-transform"
+          >
             {name}
           </Link>
         ))}
-        <p className="text-lg text-gray-300 hover:text-white cursor-pointer">
+        <p className="text-lg text-gray-300 hover:text-white hover:scale-110 transform transition-transform cursor-pointer">
           <FaShoppingCart />
         </p>
       </nav>
