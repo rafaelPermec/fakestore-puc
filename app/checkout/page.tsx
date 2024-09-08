@@ -137,13 +137,13 @@ export default function Checkout() {
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <div className="w-full h-auto rounded-lg flex items-center justify-center">
-                    <Image
-                      src="/images/qrcode/qrcode.png"
-                      alt="QR Code"
-                      width={300}
-                      height={300}
-                      className="rounded-lg cover"
-                    />
+                      <Image
+                        src="/images/qrcode/qrcode.png"
+                        alt="QR Code"
+                        width={300}
+                        height={300}
+                        className="rounded-lg cover"
+                      />
                     </div>
                   </CardContent>
                   <Separator className="w-full mb-6" />
@@ -169,18 +169,18 @@ export default function Checkout() {
                 <CardContent className="space-y-2 overflow-y-scroll max-h-[300px] px-4">
                   <HorizontalCard
                     title="Produto 1"
-                    value="R$ 100,00"
-                    image="/images/itens/placeholder.png"
+                    value={200}
+                    image="/images/home/products.png"
                   />
                   <HorizontalCard
                     title="Produto 2"
-                    value="R$ 200,00"
-                    image="/images/itens/placeholder.png"
+                    value={100}
+                    image="/images/home/products.png"
                   />
                   <HorizontalCard
                     title="Produto 3"
-                    value="R$ 300,00"
-                    image="/images/itens/placeholder.png"
+                    value={150}
+                    image="/images/home/products.png"
                   />
                 </CardContent>
                 <Separator className="w-full mt-4" />
@@ -238,7 +238,8 @@ export default function Checkout() {
                   <div className="flex flex-row items-center justify-start gap-4">
                     <Switch id="hour" className="w-4 h-4" />
                     <Label htmlFor="hour" className="text-gray-500">
-                      Estou ciente que o horário marcado é uma previsão e pode ser alterado.
+                      Estou ciente que o horário marcado é uma previsão e pode
+                      ser alterado.
                     </Label>
                   </div>
                   <Separator className="w-full" />

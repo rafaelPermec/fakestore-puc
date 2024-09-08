@@ -4,7 +4,7 @@ import Link from "next/link";
 
 interface HorizontalCardProps {
   title: string;
-  value: string;
+  value: number;
   image: string;
 }
 
@@ -26,8 +26,13 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
         />
       </div>
       <div className="w-full p-4">
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <p className="text-sm text-gray-500">{value}</p>
+        <h3 className="text-lg text-gray-600 font-semibold">{title}</h3>
+        <p className="text-sm text-gray-500">
+          {Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(value)}
+        </p>
         <Button variant="destructive" className="mt-2">
           Excluir
         </Button>

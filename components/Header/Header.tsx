@@ -1,7 +1,7 @@
 import SVGLogo from "@/icons/Logo/Logo";
 import { NavMocks } from "@/mock/nav-mocks";
 import Link from "next/link";
-import { FaShoppingCart } from "react-icons/fa";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const Header: React.FC = () => {
   return (
@@ -19,9 +19,7 @@ const Header: React.FC = () => {
             {name}
           </Link>
         ))}
-        <p className="text-lg text-gray-300 hover:text-white hover:scale-110 transform transition-transform cursor-pointer">
-          <FaShoppingCart />
-        </p>
+        <ShoppingCart />
       </nav>
     </header>
   );
