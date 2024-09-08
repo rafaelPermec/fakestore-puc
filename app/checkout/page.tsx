@@ -1,5 +1,224 @@
+import WrapperWithTitle from "@/components/WrapperWithTitle/WrapperWithTitle";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { CreditCardInputs } from "@/mock/inputs-mock";
+import { Switch } from "@/components/ui/switch";
+import { DatePicker } from "@/components/DatePicker/DatePicker";
+import { Separator } from "@/components/ui/separator";
+
 export default function Checkout() {
   return (
-    <div className="items-center justify-items-center min-h-[40dvw] p-8 pb-20 gap-16 sm:p-20 bg-white" />
+    <div className="items-center justify-items-center min-h-[40dvw] p-8 pb-20 gap-16 sm:p-20 bg-white">
+      <WrapperWithTitle
+        title="Finalize sua Compra"
+        subtitle="Preencha as informações abaixo para finalizar sua compra!"
+      >
+        <div className="w-full h-full flex flex-row items-stretch justify-center mt-8">
+          <div className="w-full min-w-[350px] h-full">
+            <Tabs
+              defaultValue="credit-card"
+              // value={type}
+              // onChange={(value) => {
+              //   setType(value as unknown as "products" | "services");
+              // }}
+              className="w-full flex flex-col items-center justify-center gap-2"
+            >
+              <TabsList className="grid grid-cols-2 w-[300px] gap-2">
+                <TabsTrigger
+                  value="credit-card"
+                  // onClick={() => {
+                  //   router.replace("/plp?type=products");
+                  //   setType("products");
+                  // }}
+                >
+                  Cartão de Crédito
+                </TabsTrigger>
+                <TabsTrigger
+                  value="pix"
+                  // onClick={() => {
+                  //   router.replace("/plp?type=services");
+                  //   setType("services");
+                  // }}
+                >
+                  Pix
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent
+                value="credit-card"
+                className="w-full flex flex-row items-start justify-center gap-6 flex-wrap"
+              >
+                <Card className="w-[80%] min-w-[350px]">
+                  <CardHeader>
+                    <CardTitle>Pagamento no Cartão de Crédito</CardTitle>
+                    <CardDescription>
+                      Para pagamentos no cartão de crédito, preencha os campos
+                      abaixo com os dados do seu cartão. Todas as informações
+                      são criptografadas e seguras.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    {CreditCardInputs.map((input) => (
+                      <div className="space-y-1">
+                        <Label htmlFor={input.id}>{input.label}</Label>
+                        <Input
+                          id={input.id}
+                          type={input.type}
+                          placeholder={input.placeholder}
+                        />
+                      </div>
+                    ))}
+                    <div className="space-y-1">
+                      <Label htmlFor="password">Parcelas</Label>
+                      <Select>
+                        <SelectTrigger className="w-full text-gray-500">
+                          <SelectValue
+                            placeholder="Quantidade de Parcelas"
+                            className="w-full"
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Quantidade de Parcelas</SelectLabel>
+                            <SelectItem value="1">1x</SelectItem>
+                            <SelectItem value="2">2x</SelectItem>
+                            <SelectItem value="3">3x</SelectItem>
+                            <SelectItem value="4">4x</SelectItem>
+                            <SelectItem value="5">5x</SelectItem>
+                            <SelectItem value="6">6x</SelectItem>
+                            <SelectItem value="7">7x</SelectItem>
+                            <SelectItem value="8">8x</SelectItem>
+                            <SelectItem value="9">9x</SelectItem>
+                            <SelectItem value="10">10x</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </CardContent>
+                  <Separator className="w-full mb-6" />
+                  <CardFooter className="w-full flex justify-center">
+                    <Button className="w-full text-lg font-semibold mx-4 py-6 px-4 rounded-lg">
+                      Finalizar Compra
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </TabsContent>
+              <TabsContent
+                value="pix"
+                className="w-full flex flex-row items-start justify-center gap-6 flex-wrap"
+              >
+                <Card className="w-[80%] min-w-[350px]">
+                  <CardHeader>
+                    <CardTitle>Pagamento no Pix</CardTitle>
+                    <CardDescription>
+                      Para pagamentos no Pix, escaneie o QR Code abaixo e efetue
+                      o pagamento. Você terá 24 horas para confirmar sua compra.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2"></CardContent>
+                  <Separator className="w-full mb-6" />
+                  <CardFooter className="w-full flex justify-center">
+                    <Button className="w-full text-lg font-semibold mx-4 py-6 px-4 rounded-lg">
+                      Finalizar Compra
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
+          <div className="w-[50%] min-w-[350px] flex flex-col items-center justify-center gap-8">
+            <div className="w-full min-w-[350px] h-full">
+              <Card className="w-full min-w-[350px]">
+                <CardHeader>
+                  <CardTitle>Pagamento no Pix</CardTitle>
+                  <CardDescription>
+                    Para pagamentos no Pix, escaneie o QR Code abaixo e efetue o
+                    pagamento. Você terá 24 horas para confirmar sua compra.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2"></CardContent>
+                <CardFooter className="w-full flex justify-start">
+                  <Button>Finalizar Compra</Button>
+                </CardFooter>
+              </Card>
+            </div>
+            <div className="w-full min-w-[350px] h-full">
+              <Card className="w-full min-w-[350px]">
+                <CardHeader>
+                  <CardTitle>Marcação de Horários</CardTitle>
+                  <CardDescription>
+                    Caso você tenha adquirido um serviço, marque o horário
+                    abaixo e informe o dia e a hora que deseja ser atendido,
+                    além do profissional que deseja que te atenda.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <div className="space-y-1 flex flex-col items-start justify-start gap-2 mb-4">
+                    <Label htmlFor="password">Data</Label>
+                    <DatePicker />
+                  </div>
+                  <div className="space-y-1 flex flex-col items-start justify-start gap-2">
+                    <Label htmlFor="password">Profissional</Label>
+                    <Select>
+                      <SelectTrigger className="w-full text-gray-500">
+                        <SelectValue
+                          placeholder="Nome do Profissional"
+                          className="w-full"
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Nome do Profissional</SelectLabel>
+                          <SelectItem value="marcelo_silva">
+                            Marcelo Silva
+                          </SelectItem>
+                          <SelectItem value="pedro_duarte">
+                            Pedro Duarte
+                          </SelectItem>
+                          <SelectItem value="joao_paulo">João Paulo</SelectItem>
+                          <SelectItem value="maria_pereira">
+                            Maria Pereira
+                          </SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </CardContent>
+                <CardFooter className="w-full flex flex-col items-start justify-start gap-4">
+                  <div className="flex flex-row items-center justify-start gap-4">
+                    <Switch id="hour" className="w-4 h-4" />
+                    <Label htmlFor="hour" className="text-gray-500">
+                      Concordo em comparecer no horário marcado, além de estar
+                      ciente que o não comparecimento acarretará em uma multa de
+                      50% do valor do serviço.
+                    </Label>
+                  </div>
+                  <Separator className="w-full" />
+                  <Button>Marcar Horário</Button>
+                </CardFooter>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </WrapperWithTitle>
+    </div>
   );
-};
+}
