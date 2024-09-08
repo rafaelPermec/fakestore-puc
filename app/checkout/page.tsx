@@ -38,7 +38,7 @@ export default function Checkout() {
         title="Finalize sua Compra"
         subtitle="Preencha as informações abaixo para finalizar sua compra!"
       >
-        <div className="w-full h-full flex flex-row items-stretch justify-center mt-8">
+        <div className="w-full h-full flex flex-row items-stretch justify-center mt-8 max-[700px]:flex-col-reverse max-[700px]:items-center gap-8">
           <div className="w-full min-w-[350px] h-full">
             <Tabs
               defaultValue="credit-card"
@@ -84,16 +84,16 @@ export default function Checkout() {
                         <SelectContent>
                           <SelectGroup>
                             <SelectLabel>Quantidade de Parcelas</SelectLabel>
-                            <SelectItem value="1">1x</SelectItem>
-                            <SelectItem value="2">2x</SelectItem>
-                            <SelectItem value="3">3x</SelectItem>
-                            <SelectItem value="4">4x</SelectItem>
-                            <SelectItem value="5">5x</SelectItem>
-                            <SelectItem value="6">6x</SelectItem>
-                            <SelectItem value="7">7x</SelectItem>
-                            <SelectItem value="8">8x</SelectItem>
-                            <SelectItem value="9">9x</SelectItem>
-                            <SelectItem value="10">10x</SelectItem>
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                              <SelectItem key={item} value={item.toString()}>
+                                {item}x de{" "}
+                                {Intl.NumberFormat("pt-BR", {
+                                  style: "currency",
+                                  currency: "BRL",
+                                }).format(totalPrice / item)}{" "}
+                                sem juros
+                              </SelectItem>
+                            ))}
                           </SelectGroup>
                         </SelectContent>
                       </Select>
@@ -140,7 +140,7 @@ export default function Checkout() {
               </TabsContent>
             </Tabs>
           </div>
-          <div className="w-[50%] min-w-[350px] flex flex-col items-center justify-center gap-8">
+          <div className="w-[50%] min-w-[350px] flex flex-col items-center justify-center gap-8 max-[700px]:flex-col-reverse max-[700px]:items-center">
             <div className="w-full min-w-[350px] h-full">
               <Card className="w-full min-w-[350px]">
                 <CardHeader>

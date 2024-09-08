@@ -5,7 +5,7 @@ import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const Header: React.FC = () => {
   return (
-    <header className="flex items-center justify-between px-12 w-full h-24 border-b bg-gray-900 max-[700px]:justify-center max-[700px]:px-4">
+    <header className="flex items-center justify-between px-12 w-full h-24 border-b bg-gray-900 max-[700px]:justify-between max-[700px]:px-4">
       <div>
         <SVGLogo />
       </div>
