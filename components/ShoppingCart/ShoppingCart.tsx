@@ -23,7 +23,7 @@ const ShoppingCart: React.FC = () => {
     <Sheet>
       <SheetTrigger>
         <p className="text-lg text-gray-300 hover:text-white hover:scale-110 transform transition-transform cursor-pointer">
-          <FaShoppingCart />
+          <FaShoppingCart className="max-[700px]:w-[40px] w-[40px]" />
         </p>
       </SheetTrigger>
       <SheetContent className="bg-gray-100 h-[100dvh]">
