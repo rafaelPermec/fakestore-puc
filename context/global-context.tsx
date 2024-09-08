@@ -1,6 +1,6 @@
 "use client";
 import { ProductsDTO } from "@/mock/products-mock";
-import React, { createContext, useMemo, useContext, useEffect } from "react";
+import React, { createContext, useMemo, useContext, useEffect, useState } from "react";
 
 const GlobalContext = createContext({});
 
@@ -13,8 +13,8 @@ interface GlobalProviderDTO {
 }
 
 const GlobalProvider = ({ children }: any) => {
-  const [cart, setCart] = React.useState<ProductsDTO[]>([]);
-  const [totalPrice, setTotalPrice] = React.useState<string>("0,00");
+  const [cart, setCart] = useState<ProductsDTO[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   const addToCart = (product: ProductsDTO) => {
     const alreadyInCart = cart.some(
