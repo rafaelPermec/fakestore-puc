@@ -1,19 +1,7 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
 import WrapperWithTitle from "@/components/WrapperWithTitle/WrapperWithTitle";
-import Counter from "@/components/Counter/Counter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import VerticalCard from "@/components/Cards/VerticalCard/VerticalCard";
 

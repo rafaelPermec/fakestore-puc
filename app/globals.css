@@ -80,6 +80,20 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 4px;
+    background: #fff;
+    background-color: transparent;
+    border-radius: 0px;
+    display: flow-root;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+  }
 }
 
 @layer base {

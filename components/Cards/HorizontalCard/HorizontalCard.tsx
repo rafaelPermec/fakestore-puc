@@ -1,16 +1,17 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Link from "next/link";
-
+import { Button } from "@/components/ui/button";
+import { IoMdClose } from "react-icons/io";
 interface HorizontalCardProps {
   title: string;
   value: number;
+  quantity: number;
   image: string;
 }
 
 const HorizontalCard: React.FC<HorizontalCardProps> = ({
   title,
   value,
+  quantity,
   image,
 }) => {
   return (
@@ -33,9 +34,10 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
             currency: "BRL",
           }).format(value)}
         </p>
-        <Button variant="destructive" className="mt-2">
-          Excluir
-        </Button>
+        <p className="text-sm text-gray-500">Quantidade: {quantity}</p>
+      </div>
+      <div className="w-auto h-auto flex items-start justify-center p-2">
+        <IoMdClose className="w-[18px] h-[18px] text-gray-400 hover:text-gray-600 transition-all duration-300" />
       </div>
     </div>
   );

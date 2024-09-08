@@ -170,16 +170,19 @@ export default function Checkout() {
                   <HorizontalCard
                     title="Produto 1"
                     value={200}
+                    quantity={1}
                     image="/images/home/products.png"
                   />
                   <HorizontalCard
                     title="Produto 2"
                     value={100}
+                    quantity={3}
                     image="/images/home/products.png"
                   />
                   <HorizontalCard
                     title="Produto 3"
                     value={150}
+                    quantity={2}
                     image="/images/home/products.png"
                   />
                 </CardContent>
