@@ -1,3 +1,4 @@
+"use client";
 import WrapperWithTitle from "@/components/WrapperWithTitle/WrapperWithTitle";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,8 +27,11 @@ import { DatePicker } from "@/components/DatePicker/DatePicker";
 import { Separator } from "@/components/ui/separator";
 import HorizontalCard from "@/components/Cards/HorizontalCard/HorizontalCard";
 import Image from "next/image";
+import { useGlobalContext } from "@/context/global-context";
 
 export default function Checkout() {
+  const { cart, totalPrice } = useGlobalContext();
+
   return (
     <div className="items-center justify-items-center min-h-[40dvw] p-8 pb-20 gap-16 sm:p-20 bg-white">
       <WrapperWithTitle
@@ -38,31 +42,11 @@ export default function Checkout() {
           <div className="w-full min-w-[350px] h-full">
             <Tabs
               defaultValue="credit-card"
-              // value={type}
-              // onChange={(value) => {
-              //   setType(value as unknown as "products" | "services");
-              // }}
               className="w-full flex flex-col items-center justify-center gap-2"
             >
               <TabsList className="grid grid-cols-2 w-[300px] gap-2">
-                <TabsTrigger
-                  value="credit-card"
-                  // onClick={() => {
-                  //   router.replace("/plp?type=products");
-                  //   setType("products");
-                  // }}
-                >
-                  Cartão de Crédito
-                </TabsTrigger>
-                <TabsTrigger
-                  value="pix"
-                  // onClick={() => {
-                  //   router.replace("/plp?type=services");
-                  //   setType("services");
-                  // }}
-                >
-                  Pix
-                </TabsTrigger>
+                <TabsTrigger value="credit-card">Cartão de Crédito</TabsTrigger>
+                <TabsTrigger value="pix">Pix</TabsTrigger>
               </TabsList>
               <TabsContent
                 value="credit-card"
@@ -167,89 +151,83 @@ export default function Checkout() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2 overflow-y-scroll max-h-[300px] px-4">
-                  <HorizontalCard
-                    title="Produto 1"
-                    value={200}
-                    quantity={1}
-                    image="/images/home/products.png"
-                  />
-                  <HorizontalCard
-                    title="Produto 2"
-                    value={100}
-                    quantity={3}
-                    image="/images/home/products.png"
-                  />
-                  <HorizontalCard
-                    title="Produto 3"
-                    value={150}
-                    quantity={2}
-                    image="/images/home/products.png"
-                  />
+                  {cart.map((item) => (
+                    <HorizontalCard key={item.id} {...item} />
+                  ))}
                 </CardContent>
                 <Separator className="w-full mt-4" />
                 <CardFooter className="w-full flex justify-between items-center mt-4">
                   <p className="text-md font-semibold text-gray-700">Total:</p>
                   <p className="text-md font-semibold text-gray-700">
-                    R$ 300,00
+                    {Intl.NumberFormat("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    }).format(totalPrice)}
                   </p>
                 </CardFooter>
               </Card>
             </div>
-            <div className="w-full min-w-[350px] h-full">
-              <Card className="w-full min-w-[350px]">
-                <CardHeader>
-                  <CardTitle>Marcação de Horários</CardTitle>
-                  <CardDescription>
-                    Caso você tenha adquirido um serviço, marque o horário
-                    abaixo e informe o dia e a hora que deseja ser atendido,
-                    além do profissional que deseja que te atenda.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="space-y-1 flex flex-col items-start justify-start gap-2 mb-4">
-                    <Label htmlFor="password">Data</Label>
-                    <DatePicker />
-                  </div>
-                  <div className="space-y-1 flex flex-col items-start justify-start gap-2">
-                    <Label htmlFor="password">Profissional</Label>
-                    <Select>
-                      <SelectTrigger className="w-full text-gray-500">
-                        <SelectValue
-                          placeholder="Nome do Profissional"
-                          className="w-full"
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Nome do Profissional</SelectLabel>
-                          <SelectItem value="marcelo_silva">
-                            Marcelo Silva
-                          </SelectItem>
-                          <SelectItem value="pedro_duarte">
-                            Pedro Duarte
-                          </SelectItem>
-                          <SelectItem value="joao_paulo">João Paulo</SelectItem>
-                          <SelectItem value="maria_pereira">
-                            Maria Pereira
-                          </SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </CardContent>
-                <CardFooter className="w-full flex flex-col items-start justify-start gap-4">
-                  <div className="flex flex-row items-center justify-start gap-4">
-                    <Switch id="hour" className="w-4 h-4" />
-                    <Label htmlFor="hour" className="text-gray-500">
-                      Estou ciente que o horário marcado é uma previsão e pode
-                      ser alterado.
-                    </Label>
-                  </div>
-                  <Separator className="w-full" />
-                  <Button>Marcar Horário</Button>
-                </CardFooter>
-              </Card>
-            </div>
+            {Array.isArray(cart) &&
+            cart.length > 0 &&
+            cart.filter((item) => item.category === "service").length > 0 ? (
+              <div className="w-full min-w-[350px] h-full">
+                <Card className="w-full min-w-[350px]">
+                  <CardHeader>
+                    <CardTitle>Marcação de Horários</CardTitle>
+                    <CardDescription>
+                      Caso você tenha adquirido um serviço, marque o horário
+                      abaixo e informe o dia e a hora que deseja ser atendido,
+                      além do profissional que deseja que te atenda.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <div className="space-y-1 flex flex-col items-start justify-start gap-2 mb-4">
+                      <Label htmlFor="password">Data</Label>
+                      <DatePicker />
+                    </div>
+                    <div className="space-y-1 flex flex-col items-start justify-start gap-2">
+                      <Label htmlFor="password">Profissional</Label>
+                      <Select>
+                        <SelectTrigger className="w-full text-gray-500">
+                          <SelectValue
+                            placeholder="Nome do Profissional"
+                            className="w-full"
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Nome do Profissional</SelectLabel>
+                            <SelectItem value="marcelo_silva">
+                              Marcelo Silva
+                            </SelectItem>
+                            <SelectItem value="pedro_duarte">
+                              Pedro Duarte
+                            </SelectItem>
+                            <SelectItem value="joao_paulo">
+                              João Paulo
+                            </SelectItem>
+                            <SelectItem value="maria_pereira">
+                              Maria Pereira
+                            </SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="w-full flex flex-col items-start justify-start gap-4">
+                    <div className="flex flex-row items-center justify-start gap-4">
+                      <Switch id="hour" className="w-4 h-4" />
+                      <Label htmlFor="hour" className="text-gray-500">
+                        Estou ciente que o horário marcado é uma previsão e pode
+                        ser alterado.
+                      </Label>
+                    </div>
+                    <Separator className="w-full" />
+                    <Button>Marcar Horário</Button>
+                  </CardFooter>
+                </Card>
+              </div>
+            ) : null}
           </div>
         </div>
       </WrapperWithTitle>

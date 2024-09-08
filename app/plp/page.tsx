@@ -4,6 +4,7 @@ import WrapperWithTitle from "@/components/WrapperWithTitle/WrapperWithTitle";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSearchParams, useRouter } from "next/navigation";
 import VerticalCard from "@/components/Cards/VerticalCard/VerticalCard";
+import ProductsMock from "@/mock/products-mock";
 
 function PLPScreen() {
   const [type, setType] = useState<"products" | "services">("products");
@@ -60,28 +61,20 @@ function PLPScreen() {
             value="products"
             className="w-full flex flex-row items-start justify-center gap-6 flex-wrap"
           >
-            {Array.from({ length: 4 }).map((_, index) => (
-              <VerticalCard
-                key={index}
-                title="Produtos"
-                description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea tenetur eum rerum inventore."
-                price={100 + index * 10}
-                image="/images/home/products.png"
-              />
+            {ProductsMock.filter(
+              (product) => product.category === "product"
+            ).map((product) => (
+              <VerticalCard key={product.id} {...product} />
             ))}
           </TabsContent>
           <TabsContent
             value="services"
             className="w-full flex flex-row items-start justify-center gap-6 flex-wrap"
           >
-            {Array.from({ length: 4 }).map((_, index) => (
-              <VerticalCard
-                key={index}
-                title="Serviços"
-                description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea tenetur eum rerum inventore."
-                price={100 + index * 10}
-                image="/images/home/services.jpg"
-              />
+            {ProductsMock.filter(
+              (product) => product.category === "service"
+            ).map((service) => (
+              <VerticalCard key={service.id} {...service} />
             ))}
           </TabsContent>
         </Tabs>

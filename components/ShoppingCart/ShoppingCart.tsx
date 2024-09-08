@@ -13,9 +13,11 @@ import {
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import HorizontalCard from "@/components/Cards/HorizontalCard/HorizontalCard";
+import { useGlobalContext } from "@/context/global-context";
 
 const ShoppingCart: React.FC = () => {
   const router = useRouter();
+  const { cart, totalPrice } = useGlobalContext();
 
   return (
     <Sheet>
@@ -33,48 +35,21 @@ const ShoppingCart: React.FC = () => {
         </SheetHeader>
         <Separator className="w-full mb-6 bg-gray-400" />
         <div className="h-full space-y-2 overflow-y-scroll px-4 py-6 z-10 pb-72">
-          <HorizontalCard
-            title="Produto 1"
-            value={200}
-            quantity={2}
-            image="/images/home/products.png"
-          />
-          <HorizontalCard
-            title="Produto 2"
-            value={100}
-            quantity={1}
-            image="/images/home/products.png"
-          />
-          <HorizontalCard
-            title="Produto 3"
-            value={150}
-            quantity={3}
-            image="/images/home/products.png"
-          />
-          <HorizontalCard
-            title="Produto 1"
-            value={200}
-            quantity={3}
-            image="/images/home/products.png"
-          />
-          <HorizontalCard
-            title="Produto 2"
-            value={100}
-            quantity={3}
-            image="/images/home/products.png"
-          />
-          <HorizontalCard
-            title="Produto 3"
-            value={150}
-            quantity={3}
-            image="/images/home/products.png"
-          />
+          {cart.map((item) => (
+            <HorizontalCard key={item.id} {...item} />
+          ))}
         </div>
         <div className="sticky bottom-0 left-0 w-full px-4 py-8 z-100 bg-gray-100">
           <Separator className="w-full bg-gray-400" />
           <SheetFooter className="mt-4">
             <div className="w-full flex flex-col items-center justify-start gap-4">
-              <p className="text-gray-800 text-sm">Total: R$ 100,00</p>
+              <p className="text-gray-800 text-sm">
+                Total:{" "}
+                {Intl.NumberFormat("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(totalPrice)}
+              </p>
               <Button
                 className="w-full text-lg font-semibold mx-4 py-6 px-4 rounded-lg bg-green-800 hover:bg-green-700"
                 onClick={() => router.push("/checkout")}
