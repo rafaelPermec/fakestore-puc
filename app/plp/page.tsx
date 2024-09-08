@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
+import VerticalCard from "@/components/Cards/VerticalCard/VerticalCard";
 
 function PLPScreen() {
   const [type, setType] = useState<"products" | "services">("products");
@@ -51,7 +52,7 @@ function PLPScreen() {
             <TabsTrigger
               value="products"
               onClick={() => {
-                router.replace("/plp?type=products")
+                router.replace("/plp?type=products");
                 setType("products");
               }}
             >
@@ -60,95 +61,41 @@ function PLPScreen() {
             <TabsTrigger
               value="services"
               onClick={() => {
-                router.replace("/plp?type=services")
+                router.replace("/plp?type=services");
                 setType("services");
               }}
             >
               Serviços
             </TabsTrigger>
           </TabsList>
-            <TabsContent
-              value="products"
-              className="w-full flex flex-row items-start justify-center gap-6 flex-wrap"
-            >
-              {Array.from({ length: 4 }).map((_, index) => (
-                <Card
-                  key={index}
-                  className="w-[30%] min-w-[350px] hover:shadow-lg hover:scale-105 transition-all duration-300"
-                >
-                  <CardHeader>
-                    <Image
-                      className="w-full h-64 object-cover rounded-lg"
-                      loading="lazy"
-                      src="/images/placeholder.png"
-                      alt="Imagem de um produto"
-                      width={300}
-                      height={300}
-                    />
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    <CardTitle>Produtos</CardTitle>
-                    <CardDescription>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Ea tenetur eum rerum inventore.
-                    </CardDescription>
-                    <div className="space-y-1">
-                      <p className="text-md font-semibold text-gray-700">
-                        R$ 100,00
-                      </p>
-                    </div>
-                    <Separator className="w-full" />
-                  </CardContent>
-                  <CardFooter>
-                    <div className="flex flex-row items-center justify-between gap-4 w-full">
-                      <Counter />
-                      <Button>Comprar</Button>
-                    </div>
-                  </CardFooter>
-                </Card>
-              ))}
-            </TabsContent>
-            <TabsContent
-              value="services"
-              className="w-full flex flex-row items-start justify-center gap-6 flex-wrap"
-            >
-              {Array.from({ length: 4 }).map((_, index) => (
-                <Card
-                  key={index}
-                  className="w-[30%] min-w-[350px] hover:shadow-lg hover:scale-105 transition-all duration-300"
-                >
-                  <CardHeader>
-                    <Image
-                      className="w-full h-64 object-cover rounded-lg"
-                      loading="lazy"
-                      src="/images/placeholder.png"
-                      alt="Imagem de um produto"
-                      width={300}
-                      height={300}
-                    />
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    <CardTitle>Serviços</CardTitle>
-                    <CardDescription>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Ea tenetur eum rerum inventore.
-                    </CardDescription>
-                    <div className="space-y-1">
-                      <p className="text-md font-semibold text-gray-700">
-                        R$ 100,00
-                      </p>
-                    </div>
-                    <Separator className="w-full" />
-                  </CardContent>
-                  <CardFooter>
-                    <div className="flex flex-row items-center justify-between gap-4 w-full">
-                      <Counter />
-                      <Button>Comprar</Button>
-                    </div>
-                  </CardFooter>
-                </Card>
-              ))}
-            </TabsContent>
+          <TabsContent
+            value="products"
+            className="w-full flex flex-row items-start justify-center gap-6 flex-wrap"
+          >
+            {Array.from({ length: 4 }).map((_, index) => (
+              <VerticalCard
+                key={index}
+                title="Produtos"
+                description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea tenetur eum rerum inventore."
+                price={100 + index * 10}
+                image="/images/home/products.png"
+              />
+            ))}
+          </TabsContent>
+          <TabsContent
+            value="services"
+            className="w-full flex flex-row items-start justify-center gap-6 flex-wrap"
+          >
+            {Array.from({ length: 4 }).map((_, index) => (
+              <VerticalCard
+                key={index}
+                title="Serviços"
+                description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea tenetur eum rerum inventore."
+                price={100 + index * 10}
+                image="/images/home/services.jpg"
+              />
+            ))}
+          </TabsContent>
         </Tabs>
       </WrapperWithTitle>
     </div>
@@ -161,4 +108,4 @@ export default function PLP() {
       <PLPScreen />
     </Suspense>
   );
-};
+}

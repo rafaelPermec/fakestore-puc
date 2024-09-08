@@ -238,9 +238,7 @@ export default function Checkout() {
                   <div className="flex flex-row items-center justify-start gap-4">
                     <Switch id="hour" className="w-4 h-4" />
                     <Label htmlFor="hour" className="text-gray-500">
-                      Concordo em comparecer no horário marcado, além de estar
-                      ciente que o não comparecimento acarretará em uma multa de
-                      50% do valor do serviço.
+                      Estou ciente que o horário marcado é uma previsão e pode ser alterado.
                     </Label>
                   </div>
                   <Separator className="w-full" />

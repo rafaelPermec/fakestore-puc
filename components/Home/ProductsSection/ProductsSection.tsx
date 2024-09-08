@@ -1,6 +1,7 @@
 import CTA from "@/components/CTA/CTA";
 import { Separator } from "@/components/ui/separator";
 import WrapperWithTitle from "@/components/WrapperWithTitle/WrapperWithTitle";
+import Image from "next/image";
 
 const ProductsSection: React.FC = () => {
   return (
@@ -10,8 +11,10 @@ const ProductsSection: React.FC = () => {
     >
       <div className="grid grid-cols-1 gap-8 mt-8 sm:grid-cols-2">
         <div className="flex flex-col items-center justify-center gap-4">
-          <img
-            src="/images/placeholder.png"
+          <Image
+            src="/images/home/products.png"
+            width={300}
+            height={300}
             alt="Imagem de um produto"
             className="w-full h-64 object-cover rounded-lg"
           />
@@ -21,12 +24,14 @@ const ProductsSection: React.FC = () => {
               Conheça nossos produtos e veja como eles podem ajudar você.
             </p>
             <Separator className="w-[60%] bg-gray-200" />
-            <CTA buttonText="Conheça" />
+            <CTA buttonText="Conheça" isRedirect href="/plp?type=products" />
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-4">
-          <img
-            src="/images/placeholder.png"
+          <Image
+            src="/images/home/services.jpg"
+            width={300}
+            height={300}
             alt="Imagem de um serviço"
             className="w-full h-64 object-cover rounded-lg"
           />
@@ -36,7 +41,7 @@ const ProductsSection: React.FC = () => {
               Conheça nossos serviços e veja como eles podem ajudar você.
             </p>
             <Separator className="w-[60%] bg-gray-200" />
-            <CTA buttonText="Conheça" />
+            <CTA buttonText="Conheça" isRedirect href="/plp?type=services" />
           </div>
         </div>
       </div>
