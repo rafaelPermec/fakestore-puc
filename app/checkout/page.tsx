@@ -24,6 +24,8 @@ import { CreditCardInputs } from "@/mock/inputs-mock";
 import { Switch } from "@/components/ui/switch";
 import { DatePicker } from "@/components/DatePicker/DatePicker";
 import { Separator } from "@/components/ui/separator";
+import HorizontalCard from "@/components/Cards/HorizontalCard/HorizontalCard";
+import Image from "next/image";
 
 export default function Checkout() {
   return (
@@ -115,7 +117,7 @@ export default function Checkout() {
                   </CardContent>
                   <Separator className="w-full mb-6" />
                   <CardFooter className="w-full flex justify-center">
-                    <Button className="w-full text-lg font-semibold mx-4 py-6 px-4 rounded-lg">
+                    <Button className="w-full text-lg font-semibold mx-4 py-6 px-4 rounded-lg bg-green-800 hover:bg-green-700">
                       Finalizar Compra
                     </Button>
                   </CardFooter>
@@ -133,10 +135,20 @@ export default function Checkout() {
                       o pagamento. Você terá 24 horas para confirmar sua compra.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-2"></CardContent>
+                  <CardContent className="space-y-2">
+                    <div className="w-full h-auto rounded-lg flex items-center justify-center">
+                    <Image
+                      src="/images/qrcode/qrcode.png"
+                      alt="QR Code"
+                      width={300}
+                      height={300}
+                      className="rounded-lg cover"
+                    />
+                    </div>
+                  </CardContent>
                   <Separator className="w-full mb-6" />
                   <CardFooter className="w-full flex justify-center">
-                    <Button className="w-full text-lg font-semibold mx-4 py-6 px-4 rounded-lg">
+                    <Button className="w-full text-lg font-semibold mx-4 py-6 px-4 rounded-lg bg-green-800 hover:bg-green-700">
                       Finalizar Compra
                     </Button>
                   </CardFooter>
@@ -148,15 +160,35 @@ export default function Checkout() {
             <div className="w-full min-w-[350px] h-full">
               <Card className="w-full min-w-[350px]">
                 <CardHeader>
-                  <CardTitle>Pagamento no Pix</CardTitle>
+                  <CardTitle>Carrinho de Compras</CardTitle>
                   <CardDescription>
-                    Para pagamentos no Pix, escaneie o QR Code abaixo e efetue o
-                    pagamento. Você terá 24 horas para confirmar sua compra.
+                    Aqui estão os produtos e serviços que você adicionou ao seu
+                    carrinho.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2"></CardContent>
-                <CardFooter className="w-full flex justify-start">
-                  <Button>Finalizar Compra</Button>
+                <CardContent className="space-y-2 overflow-y-scroll max-h-[300px] px-4">
+                  <HorizontalCard
+                    title="Produto 1"
+                    value="R$ 100,00"
+                    image="/images/itens/placeholder.png"
+                  />
+                  <HorizontalCard
+                    title="Produto 2"
+                    value="R$ 200,00"
+                    image="/images/itens/placeholder.png"
+                  />
+                  <HorizontalCard
+                    title="Produto 3"
+                    value="R$ 300,00"
+                    image="/images/itens/placeholder.png"
+                  />
+                </CardContent>
+                <Separator className="w-full mt-4" />
+                <CardFooter className="w-full flex justify-between items-center mt-4">
+                  <p className="text-md font-semibold text-gray-700">Total:</p>
+                  <p className="text-md font-semibold text-gray-700">
+                    R$ 300,00
+                  </p>
                 </CardFooter>
               </Card>
             </div>
